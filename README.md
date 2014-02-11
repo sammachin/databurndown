@@ -12,3 +12,5 @@ Once installed and running call the /newmonth url first to create a blank graph 
 This hasn't been tested much and I've only got 5 days usage in my graph so it might all break! 
 
 I should be taking care of the length of the month in newmonth, don't ask me what happens when the clocks change I guess we'll see in a few weeks!
+
+![Screenshot](https://raw2.github.com/sammachin/databurndown/master/screenshot.png "Screenshot")
