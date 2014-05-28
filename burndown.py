@@ -23,8 +23,8 @@ quota = 100 # Update this to your quota in GB 100 is for std Home::1
 def getQuota(user, password):
 	r = requests.get('https://clueless.aa.net.uk/main.cgi', auth=(user, password))
 	soup = BeautifulSoup(r.text)
-	qstring = soup.find_all('table')[1].find('tbody').find_all('td')[5].find('a').string
-	usage = float(qstring.rstrip('GB'))
+	qstring = soup.find_all('table')[1].find('tbody').find_all('td')[6].string
+	usage = float(qstring.rstrip('G'))
 	return usage
 
 def newMonth(quota):
