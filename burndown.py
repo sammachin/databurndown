@@ -5,7 +5,6 @@ import datetime
 from calendar import monthrange
 import random
 import requests 
-from bs4 import BeautifulSoup
 import pickle
 import string
 import json
@@ -21,10 +20,10 @@ quota = 100 # Update this to your quota in GB 100 is for std Home::1
 
 
 def getQuota(user, password):
-	r = requests.get('https://clueless.aa.net.uk/main.cgi', auth=(user, password))
-	soup = BeautifulSoup(r.text)
-	qstring = soup.find_all('table')[1].find('tbody').find_all('td')[6].string
-	usage = float(qstring.rstrip('G'))
+	payload = {'JSON': 0}
+	r = requests.get('https://chaos.aa.net.uk/info', auth=(user, password), params=payload)
+	data= json.loads(r.text)
+	usage = float(int(data['login'][0]['broadband'][0]['quota_left'])/10000000)/100
 	return usage
 
 def newMonth(quota):
