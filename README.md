@@ -3,7 +3,7 @@ databurndown
 
 Little webapp to show my broadband data usage as a burndown graph against my quota for my ISP Andrews &amp; Arnold
 
-
+Now using their [api][http://aa.net.uk/support-chaos.html] 
 Runs quite happily on a RPi, see the install packages script for what you need to add to stock Raspbian then just run the burndown.py script on nohup or something.
 
 The crontab needs to be installed to update the data, there are 2 urls to call the /update fetches a new value from clueless which I currently do every 6hrs and the /newmonth needs to be run on the 1st of each month to create a new pkl file with a fresh quota, this newmonth should run before any updates are called.
