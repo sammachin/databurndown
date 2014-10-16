@@ -14,7 +14,7 @@ global quota
 global aauser
 global aapass
 aauser = 'xx99@a' # Update this to your clueless user
-aapass = 'xxxxxxx' # Update this to your clueless pass
+aapass = 'xxxxxxxxxxxxxxxxxxxxx' # Update this to your clueless pass
 quota = 100 # Update this to your quota in GB 100 is for std Home::1
 
 
@@ -34,6 +34,7 @@ def newMonth(quota):
 	day = datetime.date(d.year, d.month, 1)
 	daysinmonth = monthrange(d.year, d.month)[1]
 	dayquota = quota/daysinmonth
+	quota = quota - dayquota
 	arr = []
 	data = ['Date', 'Target', 'Actual']
 	arr.append(data)
@@ -42,7 +43,7 @@ def newMonth(quota):
 	for i in range(1, daysinmonth):
 		day += datetime.timedelta(days=1)
 		quota = quota - dayquota
-		data = [day.strftime('%d-%b-%Y'), quota, None]
+		data = [day.strftime('%d-%b-%Y'), ("%.3f" % quota), None]
 		arr.append(data)
 	pickle.dump( arr, open(file, "wb"))
 
@@ -80,6 +81,7 @@ class Start(object):
 	newmonth.exposed = True
 	update.exposed = True
 
+cherrypy.server.socket_port = 8010
 cherrypy.server.socket_host = '0.0.0.0'
 cherrypy.quickstart(Start())
 
