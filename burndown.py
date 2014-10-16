@@ -23,7 +23,9 @@ def getQuota(user, password):
 	payload = {'JSON': 0}
 	r = requests.get('https://chaos.aa.net.uk/info', auth=(user, password), params=payload)
 	data= json.loads(r.text)
-	usage = float(int(data['login'][0]['broadband'][0]['quota_left'])/10000000)/100
+	usage = 0
+	for line in data['login'][0]['broadband']:
+		usage += float(int(line['quota_left'])/10000000)/100
 	return usage
 
 def newMonth(quota):
